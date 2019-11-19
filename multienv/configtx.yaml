@@ -1,0 +1,81 @@
+Organizations:
+    - &OrdererOrg1
+        Name: OrdererOrg1
+        ID: OrdererOrg1MSP
+        MSPDir: crypto-config/ordererOrganizations/ordererorg1/msp/
+
+    - &OrdererOrg2
+        Name: OrdererOrg2
+        ID: OrdererOrg2MSP
+        MSPDir: crypto-config/ordererOrganizations/ordererorg2/msp/
+
+    - &OrdererOrg3
+        Name: OrdererOrg3
+        ID: OrdererOrg3MSP
+        MSPDir: crypto-config/ordererOrganizations/ordererorg3/msp/
+
+    - &Org0
+        Name: Org0MSP
+        ID: Org0MSP
+        MSPDir: crypto-config/peerOrganizations/org0/msp/
+        AnchorPeers:
+            - Host: peer0
+              Port: 7051
+
+    - &Org1
+        Name: Org1MSP
+        ID: Org1MSP
+        MSPDir: crypto-config/peerOrganizations/org1/msp/
+        AnchorPeers:
+            - Host: peer2
+              Port: 7051
+
+Orderer: &OrdererDefaults
+    OrdererType: kafka
+    Addresses:
+        - orderer1:7050
+        - orderer2:7050
+        - orderer3:7050
+    BatchTimeout: 2s
+    BatchSize:
+        MaxMessageCount: 30
+        AbsoluteMaxBytes: 99 MB
+        PreferredMaxBytes: 512 KB
+    Kafka:
+        Brokers:
+            - kafka0:9092
+            - kafka1:9092
+            - kafka2:9092
+            - kafka3:9092
+    Organizations:
+
+Application: &ApplicationDefaults
+    Organizations:
+
+Profiles:
+
+    TwoOrgsOrdererGenesis:
+        Orderer:
+            <<: *OrdererDefaults
+            Organizations:
+                - *OrdererOrg1
+        Consortiums:
+            SampleConsortium:
+                Organizations:
+                    - *Org0
+                    - *Org1
+
+    TwoOrgsChannel:
+        Consortium: SampleConsortium
+        Application:
+            <<: *ApplicationDefaults
+            Organizations:
+                - *Org0
+                - *Org1
+
+
+
+
+
+
+
