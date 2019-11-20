@@ -1,0 +1,38 @@
+version: '1'
+
+networks:
+  behave:
+
+services:
+  zookeeper1:
+    image: hyperledger/fabric-zookeeper
+    environment:
+    - ZOO_MY_ID=1
+    - ZOO_SERVERS=server.1=zookeeper1:2888:3888 server.2=zookeeper2:2888:3888 server.3=zookeeper3:2888:3888
+    - ZOO_TICK_TIME=2000
+    - ZOO_INIT_LIMIT=10
+    - ZOO_SYNC_LIMIT=5
+    container_name: zookeeper1
+    networks:
+    - behave
+
+  kafka0:
+    image: hyperledger/fabric-kafka
+    environment:
+    - KAFKA_BROKER_ID=0
+    - KAFKA_MIN_INSYNC_REPLICAS=2
+    - KAFKA_MESSAGE_MAX_BYTES=50000000
+    - KAFKA_REPLICA_FETCH_MAX_BYTES=50000000
+    - KAFKA_PRODUCER_MAX_REQUEST_SIZE=50000000
+    - KAFKA_CONSUMER_MAX_PARTITION_FETCH_BYTES=50000000
+    - CONNECT_PRODUCER_MAX_REQUEST_SIZE=50000000
+    - CONNECT_CONSUMER_MAX_PARTITION_FETCH_BYTES=50000000
+    - KAFKA_DEFAULT_REPLICATION_FACTOR=3
+    - KAFKA_ZOOKEEPER_CONNECT=zookeeper1:2181,zookeeper2:2181,zookeeper3:2181
+    container_name: kafka0
+    networks:
+    - behave
+    links:
+    - zookeeper1:zookeeper1
+    - zookeeper2:zookeeper2
+    - zookeeper3:zookeeper3

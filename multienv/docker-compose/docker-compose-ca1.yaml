@@ -21,9 +21,7 @@ services:
      - ./crypto-config/peerOrganizations/org0/ca/:/etc/hyperledger/fabric-ca-server-config
     container_name: ca1.example.com
     networks:
-      behave:
-        aliases:
-         - ${CORE_PEER_NETWORKID}
+     -  behave
 
 
 

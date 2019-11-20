@@ -4,7 +4,7 @@ networks:
     behave:
 
 services:
-  ca1.example.com:
+  ca2.example.com:
     image: hyperledger/fabric-ca
     environment:
      - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
@@ -15,15 +15,13 @@ services:
      - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.org1-cert.pem
      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/d1a26026e1a2af90ff3d3f56f6c9400407b747fdbb825d60e576b4905ce2390b_sk
     ports:
-     - 7054:7054
+     - 8054:7054
     command: sh -c 'fabric-ca-server start -b admin:adminpw'
     volumes:
      - ./crypto-config/peerOrganizations/org1/ca/:/etc/hyperledger/fabric-ca-server-config
     container_name: ca2.example.com
     networks:
-      behave:
-        aliases:
-         - ${CORE_PEER_NETWORKID}
+     -  behave
 
 
 
