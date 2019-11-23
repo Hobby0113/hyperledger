@@ -12,6 +12,7 @@ HLF 분산환경
 - Orderer3 : CentOS7, 1 CPU, 2 RAM, 40GB — orderer3, kafka-zookeepre3, base
 
 1. 사용툴 링크
+<pre><code>
 $ sudo ln -s /home/jongseek98/fabric-samples/bin/cryptogen /usr/bin/cryptogen
 $ sudo ln -s /home/jongseek98/fabric-samples/bin/configtxgen /usr/bin/configtxgen
 $ sudo ln -s /home/jongseek98/fabric-samples/bin/configtxlator /usr/bin/configtxlator
@@ -19,8 +20,11 @@ $ sudo ln -s /home/jongseek98/fabric-samples/bin/discover /usr/bin/discover
 $ sudo ln -s /home/jongseek98/fabric-samples/bin/fabric-ca-client /usr/bin/fabric-ca-client
 $ sudo ln -s /home/jongseek98/fabric-samples/bin/idemixgen /usr/bin/idemixgen
 $ sudo ln -s /home/jongseek98/fabric-samples/bin/orderer /usr/bin/orderer
+</code></pre>
+
 
 2. crypto-config, configtxgen
+<pre><code>
 $ vi crypto-config.yaml
 $ cryptogen generate --config=./crypto-config.yaml
 $ vi configtx.yaml
@@ -33,3 +37,4 @@ $ configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate Org0MSPanchors.tx
 $ configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate Org1MSPanchors.tx -channelID mychannel -asOrg Org1MSP
 $ gcloud compute scp multienv orderer1:/home/jongseek98/multienv (scp -rq directory User@host:Directory) -> gap 끼리 파일 공유 해결 못함. 결국 git 씀…
 ($ git clone http://github. com/Hobby0113/Hyperledger.git)
+</code></pre>
