@@ -33,8 +33,6 @@ services:
     networks:
     - behave
     links:
-    - zookeeper1:zookeeper1
-    - zookeeper2:zookeeper2
     - zookeeper3:zookeeper3
 
   kafka3:
@@ -54,6 +52,4 @@ services:
     networks:
     - behave
     links:
-    - zookeeper1:zookeeper1
-    - zookeeper2:zookeeper2
     - zookeeper3:zookeeper3
