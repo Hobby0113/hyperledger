@@ -38,9 +38,6 @@ services:
     - ./crypto-config/peerOrganizations/org0/peers/peer1.org0/msp:/etc/hyperledger/fabric/msp
     - ./crypto-config/peerOrganizations/org0/peers/peer1.org0/tls:/etc/hyperledger/fabric/tls
     depends_on:
-    - orderer1
-    - orderer2
-    - orderer3
     - couchdb1
     networks:
     - behave

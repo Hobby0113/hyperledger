@@ -7,9 +7,9 @@ HLF 분산환경
 - Client(User) :CentOS7 — cli
 - Org0 (include 2 Peer) : CentOS7, 1 CPU, 2 RAM, 30GB — peer0, peer1, cli0
 - Org1 (include 2 Peer) : CentOS7, 1 CPU, 2 RAM, 30GB — peer2, peer3, cli1
-- Orderer1 : CentOS7, 1 CPU, 2 RAM, 40GB — orderer1, kafka-zookeeper1, base
-- Orderer2 : CentOS7, 1 CPU, 2 RAM, 40GB — orderer2, kafka-zookeeper2, base
-- Orderer3 : CentOS7, 1 CPU, 2 RAM, 40GB — orderer3, kafka-zookeepre3, base
+- Orderer1 : CentOS7, 1 CPU, 2 RAM, 40GB — orderer1, kafka-zookeeper1, ca0, ca1 
+- Orderer2 : CentOS7, 1 CPU, 2 RAM, 40GB — orderer2, kafka-zookeeper2,
+- Orderer3 : CentOS7, 1 CPU, 2 RAM, 40GB — orderer3, kafka-zookeepre3,
 
 1. 사용툴 링크
 <pre><code>

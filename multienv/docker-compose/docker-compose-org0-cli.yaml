@@ -1,4 +1,4 @@
-version: '1'
+version: '2'
 
 networks:
   behave:
@@ -26,17 +26,12 @@ services:
     command: /bin/bash
     volumes:
     - /var/run/:/host/var/run/
-    - ./cli:/opt/gopath/src/github.com/hyperledger/fabric/peer/cli
     - ./channel-artifacts/:/opt/gopath/src/github.com/hyperledger/fabric/peer/channel-artifacts
-    - ../../ma/chaincode:/opt/gopath/src/github.com/hyperledger/fabric/examples/chaincode/go
     - ./crypto-config:/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/
     - ./:/opt/gopath/src/github.com/hyperledger/fabric/peer
     networks:
     - behave
     depends_on:
-    - orderer1
-    - orderer2
-    - orderer3
     - peer0.org0
     - peer1.org0
     extra_hosts:
