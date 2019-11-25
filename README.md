@@ -42,12 +42,15 @@ $ gcloud compute scp multienv orderer1:/home/jongseek98/multienv (scp -rq direct
 
 3. create docker swarm network
 <pre><code>
-(orderer1)$ docker swarm init
-(orderer1)$ docker swarm join-token manager
+(Leader VM)$ docker swarm init
+(Leader VM)$ docker swarm join-token manager
 (Each VM)$ docker swarm join --token SWMTKN-1-66sgj9z2tllbig1kjpgs85mjd2rqpbho4ncr0qmkpohs2ko4ga-5la1dufa8azq8ut7yghdx2sxz 10.148.0.11:2377
 $ docker node ls # swarm node check
-(orderer1)$ docker network create --attachable --driver overlay hlf
+(Leader VM)$ docker network create --attachable --driver overlay hlf
 $ docker network ls # network check -> ukje5bdwu3zp  hlf  overlay  swarm
+(Each VM)$ git clone http://github. com/Hobby0113/Hyperledger.git
+(Leader VM)$ docker stack deploy --compose-file docker-compose-mq.yaml fabric
+(Leader VM)$ docker stack deploy --compose-file docker-compose.yaml fabric   
 </pre></code>
 
 
