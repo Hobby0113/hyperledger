@@ -28,6 +28,7 @@ $ sudo ln -s /home/jongseek98/fabric-samples/bin/orderer /usr/bin/orderer
 $ vi crypto-config.yaml
 $ cryptogen generate --config=./crypto-config.yaml
 $ vi configtx.yaml
+$ export FABRIC_CFG_PATH=[Directory for containing configtx.yaml]
 $ configtxgen -profile TwoOrgsOrdererGenesis -outputBlock genesis.block
 $ mv genesis.block ~/multienv/crypto-config/ordererOrganizations/ordererorg1/orderers/orderer1.ordererorg1/
 $ mv genesis.block ~/multienv/crypto-config/ordererOrganizations/ordererorg2/orderers/orderer2.ordererorg2/
@@ -38,3 +39,17 @@ $ configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate Org1MSPanchors.tx
 $ gcloud compute scp multienv orderer1:/home/jongseek98/multienv (scp -rq directory User@host:Directory) -> gap 끼리 파일 공유 해결 못함. 결국 git 씀…
 ($ git clone http://github. com/Hobby0113/Hyperledger.git)
 </code></pre>
+
+3. create docker swarm network
+<pre><code>
+(orderer1)$ docker swarm init
+(orderer1)$ docker swarm join-token manager
+(Each VM)$ docker swarm join --token SWMTKN-1-66sgj9z2tllbig1kjpgs85mjd2rqpbho4ncr0qmkpohs2ko4ga-5la1dufa8azq8ut7yghdx2sxz 10.148.0.11:2377
+$ docker node ls # swarm node check
+(orderer1)$ docker network create --attachable --driver overlay hlf
+$ docker network ls # network check -> ukje5bdwu3zp  hlf  overlay  swarm
+</pre></code>
+
+
+
+

@@ -1,0 +1,21 @@
+OrdererOrgs:
+  - Name: Orderer
+    Domain: orderer
+    Template:
+      Count : 3
+
+PeerOrgs:
+  - Name: Org1
+    Domain: org0
+    Template:
+      Count: 2
+    Users:
+      Count: 1
+
+  - Name: Org1
+    Domain: org1
+    Template:
+      Count: 2
+    Users:
+      Count: 1
+
