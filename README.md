@@ -34,8 +34,8 @@ $ mv genesis.block ~/multienv/crypto-config/ordererOrganizations/ordererorg1/ord
 $ mv genesis.block ~/multienv/crypto-config/ordererOrganizations/ordererorg2/orderers/orderer2.ordererorg2/
 $ mv genesis.block ~/multienv/crypto-config/ordererOrganizations/ordererorg3/orderers/orderer3.ordererorg3/
 $ configtxgen -profile TwoOrgsChannel -outputCreateChannelTx ch1.tx -channelID ch1
-$ configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate Org0MSPanchors.tx -channelID mychannel -asOrg Org0MSP
-$ configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate Org1MSPanchors.tx -channelID mychannel -asOrg Org1MSP
+$ configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate Org0MSPanchors.tx -channelID ch1 -asOrg Org0MSP
+$ configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate Org1MSPanchors.tx -channelID ch1 -asOrg Org1MSP
 $ gcloud compute scp multienv orderer1:/home/jongseek98/multienv (scp -rq directory User@host:Directory) -> gap 끼리 파일 공유 해결 못함. 결국 git 씀…
 ($ git clone http://github. com/Hobby0113/Hyperledger.git)
 </code></pre>
