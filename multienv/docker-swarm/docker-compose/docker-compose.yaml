@@ -70,7 +70,7 @@ services:
               condition: on-failure
             placement:
                 constraints:
-                    - node.hostname == ㅐorg0
+                    - node.hostname == org0
     ports:
             - published: 5984
               target: 5984
@@ -317,7 +317,7 @@ services:
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric
     command: orderer
     volumes:
-      - ../channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+      - ../channel-artifacts/:/var/hyperledger/configs
       - ../crypto-config/ordererOrganizations/orderer/orderers/orderer0.orderer/msp:/var/hyperledger/orderer/msp
       - ../crypto-config/ordererOrganizations/orderer/orderers/orderer0.orderer/tls/:/var/hyperledger/orderer/tls
     deploy:
@@ -358,7 +358,7 @@ services:
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric
     command: orderer
     volumes:
-      - ../channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+      - ../channel-artifacts/:/var/hyperledger/configs
       - ../crypto-config/ordererOrganizations/orderer/orderers/orderer1.orderer/msp:/var/hyperledger/orderer/msp
       - ../crypto-config/ordererOrganizations/orderer/orderers/orderer1.orderer/tls/:/var/hyperledger/orderer/tls
     deploy:
@@ -399,7 +399,7 @@ services:
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric
     command: orderer
     volumes:
-      - ../channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+      - ../channel-artifacts/:/var/hyperledger/configs
       - ../crypto-config/ordererOrganizations/orderer/orderers/orderer2.orderer/msp:/var/hyperledger/orderer/msp
       - ../crypto-config/ordererOrganizations/orderer/orderers/orderer2.orderer/tls/:/var/hyperledger/orderer/tls
     deploy:

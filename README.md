@@ -51,6 +51,9 @@ $ docker network ls # network check -> ukje5bdwu3zp  hlf  overlay  swarm
 (Each VM)$ git clone http://github. com/Hobby0113/Hyperledger.git
 (Leader VM)$ docker stack deploy --compose-file docker-compose-mq.yaml fabric
 (Leader VM)$ docker stack deploy --compose-file docker-compose.yaml fabric   
+(org0)$ docker exec -e "CORE_PEER_LOCALMSPID=Org0MSP" -e "CORE_PEER_MSPCONFIGPATH=/var/hyperledger/users/Admin@org0/msp" peer0.org0 peer channel create -o orderer0.orderer:7050 -c ch1 -f /var/hyperledger/configs/channel.tx
+(org0)$ docker exec -e "CORE_PEER_LOCALMSPID=Org0MSP" -e "CORE_PEER_MSPCONFIGPATH=/var/hyperledger/users/Admin@org0/msp" peer0.org0 peer channel join -b mychannel.block
+
 </pre></code>
 
 
