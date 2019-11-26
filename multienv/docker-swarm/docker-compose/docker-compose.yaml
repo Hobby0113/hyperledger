@@ -36,6 +36,7 @@ services:
 
     volumes:
         - /var/run/:/host/var/run/
+        - ../crypto-config/peerOrganizations/org0/users/:etc/hyperledger/fabric/users
         - ../crypto-config/peerOrganizations/org0/peers/peer0.org0/msp:/etc/hyperledger/fabric/msp
         - ../crypto-config/peerOrganizations/org0/peers/peer0.org0/tls:/etc/hyperledger/fabric/tls
 
@@ -108,6 +109,7 @@ services:
 
     volumes:
         - /var/run/:/host/var/run/
+        - ../crypto-config/peerOrganizations/org1/users/:etc/hyperledger/fabric/users
         - ../crypto-config/peerOrganizations/org1/peers/peer0.org1/msp:/etc/hyperledger/fabric/msp
         - ../crypto-config/peerOrganizations/org1/peers/peer0.org1/tls:/etc/hyperledger/fabric/tls
 
@@ -181,6 +183,7 @@ services:
 
     volumes:
         - /var/run/:/host/var/run/
+        - ../crypto-config/peerOrganizations/org1/users/:etc/hyperledger/fabric/users
         - ../crypto-config/peerOrganizations/org1/peers/peer1.org1/msp:/etc/hyperledger/fabric/msp
         - ../crypto-config/peerOrganizations/org1/peers/peer1.org1/tls:/etc/hyperledger/fabric/tls
 
@@ -254,6 +257,7 @@ services:
 
     volumes:
         - /var/run/:/host/var/run/
+        - ../crypto-config/peerOrganizations/org0/users/:etc/hyperledger/fabric/users
         - ../crypto-config/peerOrganizations/org0/peers/peer1.org0/msp:/etc/hyperledger/fabric/msp
         - ../crypto-config/peerOrganizations/org0/peers/peer1.org0/tls:/etc/hyperledger/fabric/tls
 
