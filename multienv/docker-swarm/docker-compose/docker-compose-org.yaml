@@ -34,7 +34,7 @@ services:
     command: peer node start
     volumes:
         - /var/run/:/host/var/run/
-        - ../crypto-config/peerOrganizations/org0/users/:etc/hyperledger/fabric/users
+        - ../crypto-config/peerOrganizations/org0/users/:/etc/hyperledger/fabric/users
         - ../crypto-config/peerOrganizations/org0/peers/peer0.org0/msp:/etc/hyperledger/fabric/msp
         - ../crypto-config/peerOrganizations/org0/peers/peer0.org0/tls:/etc/hyperledger/fabric/tls
     deploy:
@@ -99,12 +99,12 @@ services:
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.org0:7051
       - CORE_PEER_LOCALMSPID=Org0MSP
       - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
-      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb01:5984
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb01:6984
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     command: peer node start
     volumes:
         - /var/run/:/host/var/run/
-        - ../crypto-config/peerOrganizations/org0/users/:etc/hyperledger/fabric/users
+        - ../crypto-config/peerOrganizations/org0/users/:/etc/hyperledger/fabric/users
         - ../crypto-config/peerOrganizations/org0/peers/peer1.org0/msp:/etc/hyperledger/fabric/msp
         - ../crypto-config/peerOrganizations/org0/peers/peer1.org0/tls:/etc/hyperledger/fabric/tls
     deploy:
@@ -173,7 +173,7 @@ services:
     command: peer node start
     volumes:
         - /var/run/:/host/var/run/
-        - ../crypto-config/peerOrganizations/org1/users/:etc/hyperledger/fabric/users
+        - ../crypto-config/peerOrganizations/org1/users/:/etc/hyperledger/fabric/users
         - ../crypto-config/peerOrganizations/org1/peers/peer0.org1/msp:/etc/hyperledger/fabric/msp
         - ../crypto-config/peerOrganizations/org1/peers/peer0.org1/tls:/etc/hyperledger/fabric/tls
     deploy:
@@ -243,7 +243,7 @@ services:
     command: peer node start
     volumes:
         - /var/run/:/host/var/run/
-        - ../crypto-config/peerOrganizations/org1/users/:etc/hyperledger/fabric/users
+        - ../crypto-config/peerOrganizations/org1/users/:/etc/hyperledger/fabric/users
         - ../crypto-config/peerOrganizations/org1/peers/peer1.org1/msp:/etc/hyperledger/fabric/msp
         - ../crypto-config/peerOrganizations/org1/peers/peer1.org1/tls:/etc/hyperledger/fabric/tls
     deploy:
@@ -284,7 +284,7 @@ services:
     networks:
       - hlf
 
- cli0:
+  cli0:
     container_name: cli0
     image: hyperledger/fabric-tools:1.4.3
     environment:
@@ -304,7 +304,7 @@ services:
             placement:
                 constraints:
                     - node.hostname == org0
-    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
+    working_dir: /etc/hyperledger/fabric/peer
     command: /bin/bash
     volumes:
         - /var/run/:/host/var/run/
@@ -335,7 +335,7 @@ services:
             placement:
                 constraints:
                     - node.hostname == org1
-    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
+    working_dir: /etc/hyperledger/fabric/peer
     command: /bin/bash
     volumes:
         - /var/run/:/host/var/run/

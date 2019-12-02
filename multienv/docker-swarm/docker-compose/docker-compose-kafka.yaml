@@ -1,0 +1,143 @@
+version: '3.4'
+
+networks:
+  hlf:
+    external:
+      name: hlf
+
+services:
+  kafka0:
+    container_name: kafka0
+    image: hyperledger/fabric-kafka:0.4.15
+    environment:
+      - KAFKA_MESSAGE_MAX_BYTES=103809024 # 99 * 1024 * 1024 B
+      - KAFKA_REPLICA_FETCH_MAX_BYTES=103809024 # 99 * 1024 * 1024 B
+      - KAFKA_UNCLEAN_LEADER_ELECTION_ENABLE=false
+      - KAFKA_BROKER_ID=0
+      - KAFKA_MIN_INSYNC_REPLICAS=2
+      - KAFKA_DEFAULT_REPLICATION_FACTOR=3
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper0:2181,zookeeper1:2181,zookeeper2:2181
+    ports:
+      - target: 9092
+        published: 9092
+        mode: host
+    deploy:
+            mode: replicated
+            replicas: 1
+            restart_policy:
+              condition: on-failure
+            placement:
+                constraints:
+                    - node.hostname == orderer1
+                    # - node.role == manager
+    depends_on:
+      - zookeeper0
+      - zookeeper1
+      - zookeeper2
+    networks:
+      hlf:
+        aliases:
+          - kafka0
+
+  kafka1:
+    container_name: kafka1
+    image: hyperledger/fabric-kafka:0.4.15
+    environment:
+      - KAFKA_MESSAGE_MAX_BYTES=103809024 # 99 * 1024 * 1024 B
+      - KAFKA_REPLICA_FETCH_MAX_BYTES=103809024 # 99 * 1024 * 1024 B
+      - KAFKA_UNCLEAN_LEADER_ELECTION_ENABLE=false
+      - KAFKA_BROKER_ID=1
+      - KAFKA_MIN_INSYNC_REPLICAS=2
+      - KAFKA_DEFAULT_REPLICATION_FACTOR=3
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper0:2181,zookeeper1:2181,zookeeper2:2181
+    ports:
+      - target: 9092
+        published: 9092
+        mode: host
+    deploy:
+            mode: replicated
+            replicas: 1
+            restart_policy:
+              condition: on-failure
+            placement:
+                constraints:
+                    - node.hostname == orderer2
+                    # - node.role == manager
+    depends_on:
+      - zookeeper0
+      - zookeeper1
+      - zookeeper2
+    networks:
+      hlf:
+        aliases:
+          - kafka1
+
+  kafka2:
+    container_name: kafka2
+    image: hyperledger/fabric-kafka:0.4.15
+    environment:
+      - KAFKA_MESSAGE_MAX_BYTES=103809024 # 99 * 1024 * 1024 B
+      - KAFKA_REPLICA_FETCH_MAX_BYTES=103809024 # 99 * 1024 * 1024 B
+      - KAFKA_UNCLEAN_LEADER_ELECTION_ENABLE=false
+      - KAFKA_BROKER_ID=2
+      - KAFKA_MIN_INSYNC_REPLICAS=2
+      - KAFKA_DEFAULT_REPLICATION_FACTOR=3
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper0:2181,zookeeper1:2181,zookeeper2:2181
+    ports:
+      - target: 9092
+        published: 9092
+        mode: host
+    deploy:
+            mode: replicated
+            replicas: 1
+            restart_policy:
+              condition: on-failure
+            placement:
+                constraints:
+                    - node.hostname == orderer3
+                    # - node.role == manager
+    depends_on:
+      - zookeeper0
+      - zookeeper1
+      - zookeeper2
+    networks:
+      hlf:
+        aliases:
+          - kafka2
+
+  kafka3:
+    container_name: kafka3
+    image: hyperledger/fabric-kafka:0.4.15
+    environment:
+      - KAFKA_MESSAGE_MAX_BYTES=103809024 # 99 * 1024 * 1024 B
+      - KAFKA_REPLICA_FETCH_MAX_BYTES=103809024 # 99 * 1024 * 1024 B
+      - KAFKA_UNCLEAN_LEADER_ELECTION_ENABLE=false
+      - KAFKA_BROKER_ID=3
+      - KAFKA_MIN_INSYNC_REPLICAS=2
+      - KAFKA_DEFAULT_REPLICATION_FACTOR=3
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper0:2181,zookeeper1:2181,zookeeper2:2181
+    ports:
+      - target: 9092
+        published: 9092
+        mode: host
+    deploy:
+            mode: replicated
+            replicas: 1
+            restart_policy:
+              condition: on-failure
+            placement:
+                constraints:
+                    - node.hostname == orderer3
+                    # - node.role == manager
+    depends_on:
+      - zookeeper0
+      - zookeeper1
+      - zookeeper2
+    networks:
+      hlf:
+        aliases:
+          - kafka3
+
+
+
+
