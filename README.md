@@ -1,15 +1,21 @@
-# hyperledger
-Hyperledger Fabric Multienv
+### hyperledger
+##Hyperledger Fabric Multienv
 
-HLF 분산환경
+#HLF 분산환경
 
-0. 구동 환경
-- Client(User) :CentOS7 — cli
-- Org0 (include 2 Peer) : CentOS7, 1 CPU, 2 RAM, 30GB — peer0, peer1, cli0
-- Org1 (include 2 Peer) : CentOS7, 1 CPU, 2 RAM, 30GB — peer2, peer3, cli1
-- Orderer1 : CentOS7, 1 CPU, 2 RAM, 40GB — orderer1, kafka-zookeeper1, ca0, ca1 
-- Orderer2 : CentOS7, 1 CPU, 2 RAM, 40GB — orderer2, kafka-zookeeper2,
-- Orderer3 : CentOS7, 1 CPU, 2 RAM, 40GB — orderer3, kafka-zookeepre3,
+#0. 구동 환경
+#- Client(User) :CentOS7 — cli
+#- Org0 (include 2 Peer) : CentOS7, 1 CPU, 2 RAM, 30GB
+   container > org0.peer0, org0.peer1, couchDB00, couchDB01, cli0
+#- Org1 (include 2 Peer) : CentOS7, 1 CPU, 2 RAM, 30GB
+   container > org1.peer0, org1.peer1, couchDB10, couchDB11, cli1
+
+#- Orderer1 : CentOS7, 1 CPU, 2 RAM, 40GB 
+   container > orderer1, kafka0, zookeeper1, ca0, ca1 
+#- Orderer2 : CentOS7, 1 CPU, 2 RAM, 40GB 
+   container > orderer2, kafka1, zookeeper2
+#- Orderer3 : CentOS7, 1 CPU, 2 RAM, 40GB 
+   container > orderer3, kafka2, zookeeper3, zookeeper4
 
 1. 사용툴 링크
 <pre><code>
@@ -50,7 +56,8 @@ $ docker node ls # swarm node check
 $ docker network ls # network check -> ukje5bdwu3zp  hlf  overlay  swarm
 (Each VM)$ git clone http://github. com/Hobby0113/Hyperledger.git
 (Leader VM)$ docker stack deploy --compose-file docker-compose-mq.yaml fabric
-(Leader VM)$ docker stack deploy --compose-file docker-compose.yaml fabric   
+(Leader VM)$ docker stack deploy --compose-file docker-compose-orderer.yaml fabric   
+(Leader VM)$ docker stack deploy --compose-file docker-compose-org.yaml fabric
 (org0)$ docker exec -e "CORE_PEER_LOCALMSPID=Org0MSP" -e "CORE_PEER_MSPCONFIGPATH=/var/hyperledger/users/Admin@org0/msp" {containerNAME} peer channel create -o orderer0.orderer:7050 -c ch1 -f /var/hyperledger/configs/chl.tx
 (org0)$ docker exec -e "CORE_PEER_LOCALMSPID=Org0MSP" -e "CORE_PEER_MSPCONFIGPATH=/var/hyperledger/users/Admin@org0/msp" {containerNAME} peer channel join -b genesis.block
 
