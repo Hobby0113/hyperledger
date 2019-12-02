@@ -1,20 +1,20 @@
 ### hyperledger
-##Hyperledger Fabric Multienv
+## Hyperledger Fabric Multienv
 
-#HLF 분산환경
+# HLF 분산환경
 
-#0. 구동 환경
-#- Client(User) :CentOS7 — cli
-#- Org0 (include 2 Peer) : CentOS7, 1 CPU, 2 RAM, 30GB
+# 0. 구동 환경
+# - Client(User) :CentOS7 — cli
+# - Org0 (include 2 Peer) : CentOS7, 1 CPU, 2 RAM, 30GB
    container > org0.peer0, org0.peer1, couchDB00, couchDB01, cli0
-#- Org1 (include 2 Peer) : CentOS7, 1 CPU, 2 RAM, 30GB
+# - Org1 (include 2 Peer) : CentOS7, 1 CPU, 2 RAM, 30GB
    container > org1.peer0, org1.peer1, couchDB10, couchDB11, cli1
 
-#- Orderer1 : CentOS7, 1 CPU, 2 RAM, 40GB 
+# - Orderer1 : CentOS7, 1 CPU, 2 RAM, 40GB 
    container > orderer1, kafka0, zookeeper1, ca0, ca1 
-#- Orderer2 : CentOS7, 1 CPU, 2 RAM, 40GB 
+# - Orderer2 : CentOS7, 1 CPU, 2 RAM, 40GB 
    container > orderer2, kafka1, zookeeper2
-#- Orderer3 : CentOS7, 1 CPU, 2 RAM, 40GB 
+# - Orderer3 : CentOS7, 1 CPU, 2 RAM, 40GB 
    container > orderer3, kafka2, zookeeper3, zookeeper4
 
 1. 사용툴 링크
