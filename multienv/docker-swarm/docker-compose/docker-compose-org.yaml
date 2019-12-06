@@ -57,24 +57,6 @@ services:
         aliases:
           - peer0.org0
 
-  couchdb00:
-    container_name: couchdb00
-    image: hyperledger/fabric-couchdb:0.4.15
-    deploy:
-            mode: replicated
-            replicas: 1
-            restart_policy:
-              condition: on-failure
-            placement:
-                constraints:
-                    - node.hostname == org0
-    ports:
-            - published: 5984
-              target: 5984
-              mode: host
-    networks:
-      - hlf
-
   org0peer1:
     container_name: peer1.org0
     image: hyperledger/fabric-peer:1.4.3
@@ -127,24 +109,6 @@ services:
         aliases:
           - peer1.org0
 
-  couchdb01:
-    container_name: couchdb01
-    image: hyperledger/fabric-couchdb:0.4.15
-    deploy:
-            mode: replicated
-            replicas: 1
-            restart_policy:
-              condition: on-failure
-            placement:
-                constraints:
-                    - node.hostname == org0
-    ports:
-            - published: 6984
-              target: 5984
-              mode: host
-    networks:
-      - hlf
-
   org1peer0:
     container_name: peer0.org1
     image: hyperledger/fabric-peer:1.4.3
@@ -196,24 +160,6 @@ services:
         aliases:
           - peer0.org1
 
-  couchdb10:
-    container_name: couchdb10
-    image: hyperledger/fabric-couchdb:0.4.15
-    deploy:
-            mode: replicated
-            replicas: 1
-            restart_policy:
-              condition: on-failure
-            placement:
-                constraints:
-                    - node.hostname == org1
-    ports:
-            - published: 5984
-              target: 5984
-              mode: host
-    networks:
-      - hlf
-
   org1peer1:
     container_name: peer1.org1
     image: hyperledger/fabric-peer:1.4.3
@@ -238,7 +184,7 @@ services:
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.org1:7051
       - CORE_PEER_LOCALMSPID=Org1MSP
       - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
-      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb11:5984
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb11:6984
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     command: peer node start
     volumes:
@@ -265,24 +211,6 @@ services:
       hlf:
         aliases:
           - peer1.org1
-
-  couchdb11:
-    container_name: couchdb11
-    image: hyperledger/fabric-couchdb:0.4.15
-    deploy:
-            mode: replicated
-            replicas: 1
-            restart_policy:
-              condition: on-failure
-            placement:
-                constraints:
-                    - node.hostname == org1
-    ports:
-            - published: 6984
-              target: 5984
-              mode: host
-    networks:
-      - hlf
 
   cli0:
     container_name: cli0

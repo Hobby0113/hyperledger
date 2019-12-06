@@ -71,7 +71,7 @@ sudo service docker start
 (Leader EC) docker node rm NODE
 docker service ps --no-trunc {SERVICE NAME}
 docker service ps --no-trunc {SERVICE NAME} --format "{{.Name}}: {{.Error}}"
-
+docker service rm $(docker service ls -q)
 
 
 
