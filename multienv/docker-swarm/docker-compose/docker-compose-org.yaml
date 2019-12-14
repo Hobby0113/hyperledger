@@ -54,6 +54,12 @@ services:
             - published: 7053
               target: 7053
               mode: host
+    extra_hosts:
+      - "orderer1:10.148.0.11"
+      - "orderer2:10.148.0.12"
+      - "orderer3:10.148.0.15"
+      - "org0:10.148.0.13"
+      - "org1:10.148.0.14"
     networks:
       hlf:
         aliases:

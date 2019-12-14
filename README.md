@@ -78,7 +78,10 @@ docker service rm $(docker service ls -q)
 
 4. Create and join
 <pre><code>
-(org0)$ docker exec -e "CORE_PEER_LOCALMSPID=Org0MSP" -e "CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/fabric/users/Admin@org0/msp" {containerNAME} peer channel create -o orderer0.orderer:7050 -c ch1 -f /var/hyperledger/configs/chl.tx
+(org0)$ docker exec -e "CORE_PEER_LOCALMSPID=Org0MSP" -e "CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/fabric/users/Admin@org0/msp" {containerNAME} peer channel create -o orderer1:7050 -c ch1 -f /etc/hyperledger/fabric/channel-artifacts/ch1.tx --tls --cafile /etc/hyperledger/orderers/orderer0.orderer/msp/tlscacerts/tlsca.orderer-cert.pem
+
+../crypto-config/ordererOrganizations/orderer/orderers/:/etc/hyperledger/orderers
+
 (org0)$ docker exec -e "CORE_PEER_LOCALMSPID=Org0MSP" -e "CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/fabric/users/Admin@org0/msp" {containerNAME} peer channel join -b genesis.block
 </code></pre>
 
