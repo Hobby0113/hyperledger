@@ -55,13 +55,12 @@ $ docker node ls # swarm node checck
 (Leader EC)$ docker network create --attachable --driver overlay hlf
 $ docker network ls # network check -> ukje5bdwu3zp  hlf  overlay  swarm
 (Each EC)$ git clone http://github. com/Hobby0113/Hyperledger.git
-(Leader EC)$ docker stack deploy --compose-file docker-compose-zookeeper.yaml fabric
-(Leader EC)$ docker stack deploy --compose-file docker-compose-kafka.yaml fabric
-(Leader EC)$ docker stack deploy --compose-file docker-compose-orderer.yaml fabric
-(Leader EC)$ docker stack deploy --compose-file docker-compose-couchdb.yaml fabric   
-(Leader EC)$ docker stack deploy --compose-file docker-compose-org.yaml fabric
-(org0)$ docker exec -e "CORE_PEER_LOCALMSPID=Org0MSP" -e "CORE_PEER_MSPCONFIGPATH=/var/hyperledger/users/Admin@org0/msp" {containerNAME} peer channel create -o orderer0.orderer:7050 -c ch1 -f /var/hyperledger/configs/chl.tx
-(org0)$ docker exec -e "CORE_PEER_LOCALMSPID=Org0MSP" -e "CORE_PEER_MSPCONFIGPATH=/var/hyperledger/users/Admin@org0/msp" {containerNAME} peer channel join -b genesis.block
+(Leader EC)$ docker stack deploy --compose-file docker-compose-zookeeper.yaml hlf
+(Leader EC)$ docker stack deploy --compose-file docker-compose-kafka.yaml hlf
+(Leader EC)$ docker stack deploy --compose-file docker-compose-orderer.yaml hlf
+(Leader EC)$ docker stack deploy --compose-file docker-compose-couchdb.yaml hlf
+(Leader EC)$ docker stack deploy --compose-file docker-compose-org.yaml hlf
+(Each EC)$ docker ps
 </pre></code>
 
 3-1. initialize docker swarm network
@@ -75,7 +74,14 @@ sudo service docker start
 docker service ps --no-trunc {SERVICE NAME}
 docker service ps --no-trunc {SERVICE NAME} --format "{{.Name}}: {{.Error}}"
 docker service rm $(docker service ls -q)
-</pre></code>
+</code></pre>
+
+4. Create and join
+<pre><code>
+(org0)$ docker exec -e "CORE_PEER_LOCALMSPID=Org0MSP" -e "CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/fabric/users/Admin@org0/msp" {containerNAME} peer channel create -o orderer0.orderer:7050 -c ch1 -f /var/hyperledger/configs/chl.tx
+(org0)$ docker exec -e "CORE_PEER_LOCALMSPID=Org0MSP" -e "CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/fabric/users/Admin@org0/msp" {containerNAME} peer channel join -b genesis.block
+</code></pre>
+
 
 
 
