@@ -118,7 +118,7 @@ services:
       - KAFKA_ZOOKEEPER_CONNECT=zookeeper0:2181,zookeeper1:2181,zookeeper2:2181
     ports:
       - target: 9092
-        published: 9092
+        published: 10092
         mode: host
     deploy:
             mode: replicated
