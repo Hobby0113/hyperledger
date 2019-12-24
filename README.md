@@ -42,8 +42,8 @@ $ mkdir channel-artifact
 $ mv ch1.tx genesis.block Org0MSPanchors.tx Org1MSPanchors.tx channel-artifact
 $ tar cvf channel-artifact.tar channel-artifact
 (Each EC)$ git pull ~~
-(Each EC)$ rm -rf channel-artifact
-(Each EC)$ tar xvf channel-artifact.tar
+(Each EC)$ ./init_channel_artifact.sh
+
 $ gcloud compute scp multienv orderer1:/home/jongseek98/multienv (scp -rq directory User@host:Directory) -> gap 끼리 파일 공유 해결 못함. 결국 git 씀…
 ($ git clone http://github. com/Hobby0113/Hyperledger.git)
 </code></pre>
