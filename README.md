@@ -60,6 +60,7 @@ $ docker network ls # network check -> ukje5bdwu3zp  hlf  overlay  swarm
 (Leader EC)$ docker stack deploy --compose-file docker-compose-zookeeper.yaml hlf
 (Leader EC)$ docker stack deploy --compose-file docker-compose-kafka.yaml hlf
 (Leader EC)$ docker stack deploy --compose-file docker-compose-orderer.yaml hlf
+(Leader EC)$ docker stack deploy --compose-file docker-compose-ca.yaml hlf
 (Leader EC)$ docker stack deploy --compose-file docker-compose-couchdb.yaml hlf
 (Leader EC)$ docker stack deploy --compose-file docker-compose-org.yaml hlf
 (Each EC)$ docker ps
