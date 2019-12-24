@@ -34,11 +34,11 @@ services:
     command: peer node start
     volumes:
         - /var/run/:/host/var/run/
-        - ../crypto-config/peerOrganizations/org0/users/:/etc/hyperledger/fabric/users
+        - ../crypto-config/peerOrganizations/org0/users:/etc/hyperledger/fabric/users
         - ../crypto-config/peerOrganizations/org0/peers/peer0.org0/msp:/etc/hyperledger/fabric/msp
         - ../crypto-config/peerOrganizations/org0/peers/peer0.org0/tls:/etc/hyperledger/fabric/tls
         - ../channel-artifacts:/etc/hyperledger/fabric/channel-artifacts
-        - ../crypto-config/ordererOrganizations/orderer/orderers/:/etc/hyperledger/orderers
+        - ../crypto-config/ordererOrganizations/orderer/orderers:/etc/hyperledger/orderers
     deploy:
             mode: replicated
             replicas: 1

@@ -28,7 +28,6 @@ $ sudo ln -s /home/jongseek98/fabric-samples/bin/idemixgen /usr/bin/idemixgen
 $ sudo ln -s /home/jongseek98/fabric-samples/bin/orderer /usr/bin/orderer
 </code></pre>
 
-
 2. crypto-config, configtxgen
 <pre><code>
 $ vi crypto-config.yaml
@@ -36,12 +35,13 @@ $ cryptogen generate --config=./crypto-config.yaml
 $ vi configtx.yaml
 $ export FABRIC_CFG_PATH=[Directory for containing configtx.yaml]
 $ configtxgen -profile TwoOrgsOrdererGenesis -outputBlock genesis.block
-$ mv genesis.block ~/multienv/crypto-config/ordererOrganizations/ordererorg1/orderers/orderer1.ordererorg1/
-$ mv genesis.block ~/multienv/crypto-config/ordererOrganizations/ordererorg2/orderers/orderer2.ordererorg2/
-$ mv genesis.block ~/multienv/crypto-config/ordererOrganizations/ordererorg3/orderers/orderer3.ordererorg3/
 $ configtxgen -profile TwoOrgsChannel -outputCreateChannelTx ch1.tx -channelID ch1
 $ configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate Org0MSPanchors.tx -channelID ch1 -asOrg Org0MSP
 $ configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate Org1MSPanchors.tx -channelID ch1 -asOrg Org1MSP
+$ mkdir channel-artifact
+$ mv ch1.tx genesis.block Org0MSPanchors.tx Org1MSPanchors.tx channel-artifact
+$ tar cvf channel-artifact.tar channel-artifact
+(Each EC)& git pull ~~
 $ gcloud compute scp multienv orderer1:/home/jongseek98/multienv (scp -rq directory User@host:Directory) -> gap 끼리 파일 공유 해결 못함. 결국 git 씀…
 ($ git clone http://github. com/Hobby0113/Hyperledger.git)
 </code></pre>
